@@ -20,7 +20,7 @@ public interface view {
 	public void displayerror(String error);
 	public void displaysolution (Solution <Position> insert); //SIMON OLAY BAYATI HAKETA SHEL HA SOLUTION
 	public void notifymazehasbeensaved(String name);
-	public void displaycross(int[][] toreturn,int firstnumber,int secondnumber);
+	public void displaycross(int[][] toreturn);
 	public void displayDirPath(String[] list);
 	public void notifymazeloaded();
 	public void displayloadmaze(String string);
