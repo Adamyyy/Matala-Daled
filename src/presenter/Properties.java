@@ -16,13 +16,15 @@ public class Properties implements Serializable {
 	private String cellchooser;
 	private int numberOfThreads;
 	private String searchAlgorithm;
+	private String viewtype;
 	
-	public Properties(int numberOfThreads , String algorithm , String searchAlgorithm , String CellChooser) {
+	public Properties(int numberOfThreads , String algorithm , String searchAlgorithm , String CellChooser,String insertviewtype) {
 		super();
 		this.numberOfThreads = numberOfThreads;
 		this.algorithm = algorithm;
 		this.cellchooser = CellChooser;
 		this.searchAlgorithm = searchAlgorithm;
+		this.viewtype = insertviewtype;
 	}
 	
 	public Properties(Properties p) {
@@ -30,6 +32,7 @@ public class Properties implements Serializable {
 		cellchooser= p.cellchooser;
 		numberOfThreads = p.numberOfThreads;
 		searchAlgorithm = p.searchAlgorithm;
+		viewtype = p.viewtype;
 	}
 
 	public Properties(String filename)
@@ -43,6 +46,7 @@ public class Properties implements Serializable {
 			cellchooser= p.cellchooser;
 			numberOfThreads = p.numberOfThreads;
 			searchAlgorithm = p.searchAlgorithm;
+			viewtype=p.viewtype;
 			
 			}
 			catch (Exception e) {
@@ -60,6 +64,14 @@ public class Properties implements Serializable {
 	}
 
 
+
+	public String getViewtype() {
+		return viewtype;
+	}
+
+	public void setViewtype(String viewtype) {
+		this.viewtype = viewtype;
+	}
 
 	public String getAlgorithm() {
 		return algorithm;

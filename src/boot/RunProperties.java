@@ -21,7 +21,7 @@ public class RunProperties {
 			
 			
 			XMLEncoder xmlE = new XMLEncoder(new FileOutputStream(file));
-			Properties towrite = new Properties(50, "GrowingTree", "BFS" , "LCC");
+			Properties towrite = new Properties(50, "GrowingTree", "BFS" , "LCC", "GUI");
 			xmlE.writeObject(towrite);
 			xmlE.close();
 			System.out.println("XML File created successfuly!");

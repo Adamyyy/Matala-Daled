@@ -32,9 +32,14 @@ public class Presenter implements Observer{
 			if (commands.get(maincommand)==null) {view.displayerror("Invalid command");	}
 	}
 		if (o==model) {
+			
+			String viewtype = model.getProperties().getViewtype();
+			if (viewtype.equals("CLI")) {
 			String message=(String) arg;
-			view.displayerror(message);
+			view.displayerror(message);}
+			
 		}
+		
 		}
 
 	

@@ -108,4 +108,11 @@ public class Myview extends Observable implements view,Observer {
 	
 	}
 
+
+	@Override
+	public void getmaze(Maze3d insert) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

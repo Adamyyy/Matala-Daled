@@ -14,6 +14,7 @@ import algorithms.search.State;
 
 public interface view {
 	public void start();
+	public void getmaze(Maze3d insert);
 	public void notifyMazeIsReady(String name);
 	public void notifysolutionisready(String name);
 	public void displayMaze(Maze3d maze);

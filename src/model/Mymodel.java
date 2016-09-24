@@ -68,7 +68,7 @@ public class Mymodel extends Observable implements model {
 				Maze3d maze= generator.generate(z, y, x);
 				mazes.put(name,maze);
 				setChanged();
-				notifyObservers("Maze " + name + " is ready");
+				if(properties.getViewtype().equals("CLI")){notifyObservers("Maze " + name + " is ready");}
 				
 				return maze;
 			}
@@ -80,6 +80,16 @@ public class Mymodel extends Observable implements model {
 
 
 	
+
+
+	public Properties getProperties() {
+		return properties;
+	}
+
+
+	public void setProperties(Properties properties) {
+		this.properties = properties;
+	}
 
 
 	@Override
@@ -112,31 +122,31 @@ public class Mymodel extends Observable implements model {
 
 	@Override
 	public void savemaze(String name, String filename) {
-		Maze3d toworkon = mazes.get(name);
-		if (!mazes.containsKey(name)) {
+		  Maze3d maze = mazes.get(name);
+		  if (!mazes.containsKey(name)) {
 			setChanged();
-			notifyObservers("There is no maze with the name " + name);
-			return;
-		}
-		byte []bytearray=toworkon.toByteArray();
-		MyCompressorOutputStream out;
-		try {
-			out = new MyCompressorOutputStream(new FileOutputStream(filename));
-			out.write(bytearray);
-			out.close();
-			setChanged();
-			notifyObservers("Maze " + name + " has been saved under name" + filename);
-			
+			notifyObservers("Error! can't find a maze solution with the name: '" + name + "'");
+		    return;
+		  }
+		  byte[] bytearray = maze.toByteArray();
+		  MyCompressorOutputStream out;
+		  try {
+		   out = new MyCompressorOutputStream(new FileOutputStream(filename));
+		   out.write(bytearray);
+		   setChanged();
+			notifyObservers(name + " has been saved under the name " + filename);;
 
-		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
+
+		  } catch (FileNotFoundException e1) {
+			  setChanged();
+				 notifyObservers("file error");
+		  } catch (IOException e) {
+			  setChanged();
+				 notifyObservers("file error");;
+		  }
+
+		 }
+
 
 	@Override
 	public int[][] getcrossbyindex(int index, String x_y_z, String name) {
@@ -196,31 +206,38 @@ catch (Exception e) {
 
 	@Override
 	public void load(String filename, String mazename) {
-		File file = new File(filename);
-		
-		if (!(file.exists())) {
-			setChanged();
-			notifyObservers("File doesnt exist");
-			return;
-		}
-		try {
+		{
+			File file = new File(filename);
 
-			
-			 Path path = Paths.get(file.getAbsolutePath());
-			 byte[] data = Files.readAllBytes(path);
-			 InputStream in=new MyDecompressorInputStream(new FileInputStream(filename));
-				in.read(data);
-			 Maze3d newmaze= new Maze3d(data);
-			 mazes.put(mazename, newmaze);
-			 
+			  if (!(file.exists())) {
+			   setChanged();
+			   notifyObservers("Error! File isn't exist");
+			   return;
+			  }
+			  
+			  
+			  try {
+			   MyDecompressorInputStream in = new MyDecompressorInputStream(new FileInputStream(filename));
+			   byte bytearray[] = new byte[(int) file.length()*2];
+			   in.read(bytearray);
+			   in.close();
+			   Maze3d newmaze = new Maze3d(bytearray);
+			   mazes.put(mazename, newmaze); in .close();
+			   setChanged();
+			   notifyObservers(filename +" loaded to " + mazename);
+			   return;
+			  }
+
+			  catch (FileNotFoundException e1) {
 			 setChanged();
-			 notifyObservers(filename + "Has been saved" + " under the name " + mazename);			 
-		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			 notifyObservers("file error");;
+			  } catch (IOException e) {
+				  setChanged();
+					 notifyObservers("file error");;
+			  }
+			 
+
+
 		}
 	}
 		

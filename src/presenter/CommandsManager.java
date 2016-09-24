@@ -50,6 +50,11 @@ public class CommandsManager {
 			int y = Integer.parseInt(args[3]);
 			int x= Integer.parseInt(args[4]);
 			model.generatemaze(name, z, y, x); //HARASHO
+			if (model.getProperties().getViewtype().equals("GUI") ) {
+				Maze3d todisplay =model.getmaze(name);
+			view.getmaze(todisplay);	
+			}
+			
 		}		
 	}
 

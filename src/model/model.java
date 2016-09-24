@@ -5,6 +5,7 @@ import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.Position;
 import algorithms.search.Solution;
 import algorithms.search.State;
+import presenter.Properties;
 public interface model {
 
 	
@@ -16,5 +17,6 @@ public interface model {
 	public int[][] getcrossbyindex(int index, String x_y_z, String name);
 	public void dirpath(String[] args);
 	public void exit();
+	public Properties getProperties();
 	public void load(String filename,String mazename);
 }

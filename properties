@@ -13,5 +13,8 @@
   <void property="searchAlgorithm">
    <string>BFS</string>
   </void>
+  <void property="viewtype">
+   <string>GUI</string>
+  </void>
  </object>
 </java>
