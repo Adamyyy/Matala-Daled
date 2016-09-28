@@ -20,8 +20,8 @@ public class CommandsManager {
 	private model model;
 	private view view;
 
-	
-	
+
+
 	public CommandsManager(model model, view view) {
 		this.model = model;
 		this.view = view;		
@@ -38,6 +38,7 @@ public class CommandsManager {
 		commands.put("dirpath", new dircommand());
 		commands.put("load", new loadcommand());
 		commands.put("exit", new exitcommand());
+		commands.put("getproperties", new Getpropertiescommand());
 		return commands;
 	}
 
@@ -52,9 +53,9 @@ public class CommandsManager {
 			model.generatemaze(name, z, y, x); //HARASHO
 			if (model.getProperties().getViewtype().equals("GUI") ) {
 				Maze3d todisplay =model.getmaze(name);
-			view.getmaze(todisplay);	
+				view.getmaze(todisplay);	
 			}
-			
+
 		}		
 	}
 
@@ -65,20 +66,41 @@ public class CommandsManager {
 			String name = args[1];
 			Maze3d maze = model.getmaze(name);
 			if (!(maze==null)) { view.displayMaze(maze);}
-			
+
 		}
 
 	}
+	
+	
+	public class Getpropertiescommand implements Command {
+
+		@Override
+		public void doCommand(String[] args) {
+		Properties p=model.getProperties();
+		if (model.getProperties().getViewtype().equals("GUI")) {
+			view.getproperties(p);
+			
+		}
+		
+		}
+
+	}
+	
+	
 
 	public class SolveMazeCommand implements Command {
 
 		@Override
 		public void doCommand(String[] args) {
 
-		
+
 			String name = args[1];
-			
+
 			model.solvemaze(name);
+			if(model.getProperties().getViewtype().equals("GUI"))	{
+				Solution<Position> sol= model.getsolution(name);
+				view.getsolution(sol); }
+
 		}
 	}
 
@@ -89,9 +111,9 @@ public class CommandsManager {
 			String name = args[1];
 			String filename = args[2];
 			model.savemaze(name,filename);
-			
-			
-			}
+
+
+		}
 	}
 	public class DisplaySolutionCommand implements Command {
 
@@ -100,64 +122,68 @@ public class CommandsManager {
 			String name = args[1];
 			Solution<Position> sol = model.getsolution(name);
 			if (!(sol==null)) { view.displaysolution(sol);
-		}
-	
-		}
-		
-	}
-public class Displaycrosscommand implements Command {
+			}
 
-	@Override
-	public void doCommand(String[] args) {
-		int index=Integer.parseInt(args[1]);
-		String z_y_x = args[2];
-		String name = args[3];
-		int[][] todisplay=model.getcrossbyindex(index,z_y_x,name);
-		view.displaycross(todisplay);
-		
+		}
+
 	}
-	
-	
+	public class Displaycrosscommand implements Command {
+
+		@Override
+		public void doCommand(String[] args) {
+			int index=Integer.parseInt(args[1]);
+			String z_y_x = args[2];
+			String name = args[3];
+			int[][] todisplay=model.getcrossbyindex(index,z_y_x,name);
+			view.displaycross(todisplay);
+
+		}
+
+
+	}
+
+	public class exitcommand implements Command{
+
+		@Override
+		public void doCommand(String[] args) {
+			model.exit();
+
+		}
+
+
+	}
+
+	public class loadcommand implements Command
+	{
+
+		@Override
+		public void doCommand(String[] args) {
+			String fileName = args[1];
+			String mazeName = args[2];
+			model.load(fileName, mazeName);
+			
+			if ((model.getProperties().getViewtype()).equals("GUI")) {
+				Maze3d todisplay =model.getmaze(mazeName);
+				view.getmaze(todisplay);
+			}
+		}
+
+	}
+	public class dircommand implements Command{
+
+
+
+		@Override
+		public void doCommand(String[] args) {
+			model.dirpath (args);
+		}
+	}
+
+
 }
 
-public class exitcommand implements Command{
-
-	@Override
-	public void doCommand(String[] args) {
-		model.exit();
-		
-	}
-	
-	
-}
-
-public class loadcommand implements Command
-{
-
-	@Override
-	public void doCommand(String[] args) {
-		String fileName = args[1];
-		String mazeName = args[2];
-		model.load(fileName, mazeName);
-		
-	}
-	
-}
-public class dircommand implements Command{
-	
 
 
-	@Override
-	public void doCommand(String[] args) {
-		model.dirpath (args);
-		}
-		}
-		
-	
-}
 
-	
-	
-	
 
 

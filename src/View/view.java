@@ -1,6 +1,7 @@
 package View;
 
 import java.util.HashMap;
+import java.util.Properties;
 
 import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.Position;
@@ -25,6 +26,8 @@ public interface view {
 	public void displayDirPath(String[] list);
 	public void notifymazeloaded();
 	public void displayloadmaze(String string);
+	public void getsolution (Solution<Position> sol);
+	public void getproperties (presenter.Properties p);
 }
 
 

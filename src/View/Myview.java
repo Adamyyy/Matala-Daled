@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.PrintWriter;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Properties;
 
 import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.Position;
@@ -111,6 +112,23 @@ public class Myview extends Observable implements view,Observer {
 
 	@Override
 	public void getmaze(Maze3d insert) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void getsolution(Solution<Position> sol) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
+
+	@Override
+	public void getproperties(presenter.Properties p) {
 		// TODO Auto-generated method stub
 		
 	}

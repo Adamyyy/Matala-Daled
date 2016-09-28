@@ -17,7 +17,7 @@ import org.eclipse.swt.widgets.Text;
 
 public class GenerateMazeWindow extends DialogWindow {
 	Shell shell;
-	String name=new String();
+
 	
 	public void start(Display display) {		
 		shell = new Shell(display);
@@ -69,7 +69,7 @@ public class GenerateMazeWindow extends DialogWindow {
 			public void widgetSelected(SelectionEvent arg0) {				
 				MessageBox msg = new MessageBox(shell, SWT.OK);
 				msg.setText("Title");
-				//msg.setMessage("Button was clicked");
+				
 				String mazename= txtmaze.getText();
 				String z= txtfloors.getText();
 				String y = txtRows.getText();

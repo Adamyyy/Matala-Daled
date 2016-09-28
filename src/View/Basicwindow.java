@@ -6,34 +6,34 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
 public abstract class Basicwindow extends Observable implements Runnable{
-	
-	
-	
+
+
+
 	Display display;  // our display
 	Shell shell;
 
-public Basicwindow(int orech,int rochav) {
-	display=new Display();
-	shell = new Shell(display);
-	shell.setSize(orech, rochav);
+	public Basicwindow(int orech,int rochav) {
+		display=new Display();
+		shell = new Shell(display);
+		shell.setSize(orech, rochav);
 
-}
-abstract void initwidgets();
+	}
+	abstract void initwidgets();
 
-@Override
-public void run() {
-	initwidgets();
-	shell.open();
-	 while(!shell.isDisposed()){ 
-		  
-		    if(!display.readAndDispatch()){ 	// if the queue is empty
-		       display.sleep(); 			
-		    }
+	@Override
+	public void run() {
+		initwidgets();
+		shell.open();
+		while(!shell.isDisposed()){ 
 
-		 } // shell is disposed
+			if(!display.readAndDispatch()){ 	// if the queue is empty
+				display.sleep(); 			
+			}
 
-		 display.dispose(); 
-}
- 
-	
+		} // shell is disposed
+
+		display.dispose(); 
+	}
+
+
 }
