@@ -24,7 +24,7 @@ public class RunProperties {
 			Properties towrite = new Properties(50, "GrowingTree", "BFS" , "LCC", "GUI");
 			xmlE.writeObject(towrite);
 			xmlE.close();
-			System.out.println("XML File created successfuly!");
+			//System.out.println("XML File created successfuly!");
 		} 
 		catch (FileNotFoundException e) 
 		{
