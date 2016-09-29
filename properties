@@ -14,7 +14,7 @@
    <string>BFS</string>
   </void>
   <void property="viewtype">
-   <string>GUI</string>
+   <string>CLI</string>
   </void>
  </object>
 </java>

@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.util.Scanner;
 
 import presenter.Properties;
 
@@ -14,6 +15,8 @@ public class RunProperties {
 
 	public static void main(String[] args) 
 	{
+		
+		
 		
 		try 
 		{//	public Properties(int numberOfThreads , String Algorithm , String searchAlgorithm , int maxMazeSize , String viewSetup) {
@@ -24,7 +27,7 @@ public class RunProperties {
 			Properties towrite = new Properties(50, "GrowingTree", "BFS" , "LCC", "GUI");
 			xmlE.writeObject(towrite);
 			xmlE.close();
-			//System.out.println("XML File created successfuly!");
+			System.out.println("XML File created successfuly!");
 		} 
 		catch (FileNotFoundException e) 
 		{
