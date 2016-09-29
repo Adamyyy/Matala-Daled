@@ -107,7 +107,7 @@ public class MazeDisplay extends Canvas{
 							timer.cancel();
 							timerTask.cancel();
 							if(goal.equals(ch.getPos())) {
-								winwin= new WinWindow("Win!");
+								winwin= new WinWindow("Welcome to white castle!");
 								winwin.start(getDisplay()); 
 							}
 						}

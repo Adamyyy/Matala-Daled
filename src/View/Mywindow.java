@@ -68,9 +68,12 @@ public class Mywindow extends Basicwindow implements view,Observer {
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				
+				if (Md==null){
 				win.start(display);
-
+				}
+				else {
+				Md.dispose();
+				win.start(display);}
 
 
 			}
@@ -132,6 +135,7 @@ public class Mywindow extends Basicwindow implements view,Observer {
 		});
 		//User presses to start mazecreator and than game
 				Button loadmazebutton = new Button(buttons, SWT.PUSH);
+				
 				loadmazebutton.setText("Load maze ");
 				ld.addObserver(this);
 
@@ -139,7 +143,14 @@ public class Mywindow extends Basicwindow implements view,Observer {
 
 					@Override
 					public void widgetSelected(SelectionEvent e) {
-						ld.start(display);
+						if (Md==null){
+							win.start(display);
+							}
+							else {
+							Md.dispose();
+							ld.start(display);}
+						
+						
 
 
 
